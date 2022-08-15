@@ -7,7 +7,10 @@ df_universe<-data.frame(
           "WSW", "R30","UA","GILG","SsC","GOG","S","SCRUBS","LOTR","BOBB","TL","WD",
           "B","ARCH","O","SHL","TW","WW","SOP","FS","S8","DA","GP","MCU","ASP","NG","CM",
           "SF","GTH","AD","V", "T7S","SV","BVS","MF","YJ","ST","TP","SC","DH","MM",
-          "BSG","ALA","TB","SP","RD","C","WV","MASH","D"),
+          "BSG","ALA","TB","SP","RD","C","WV","MASH","D","SCDL","VK","TWCH","SL","SE",
+         "GLEE","MG","CXG","WE","KE","ARC","PC","BDC","DK","EXP","TGW","WC","SVU",
+         "FR","SW","PKB","XF","ER","TIU","ONB","B99","BB","LK","BATB",
+         "BC","RJ","LU","CH","NCIS","HAM","LW","TNG","SBSP"),
   name = c("Friends","Euphoria","How I Met Your Mother",
            "Game of Thrones","Futurama", "The Office",
            "Harry Potter","Grey's Anatomy","House",
@@ -22,8 +25,16 @@ df_universe<-data.frame(
            "Veep", "That 70's Show","Silicon Valley","Buffy the Vampire Slayer",
            "Modern Family","Yellowjackets","Stranger Things","Twin Peaks","Sex and the City",
            "Desperate Housewives","Mad Men","Battlestar Galactica","Avatar: The Last Airbender",
-           "The Boys","South Park","Riverdale","Community","WandaVision","M*A*S*H","Dexter")
+           "The Boys","South Park","Riverdale","Community","WandaVision","M*A*S*H","Dexter",
+           "Scandal","Vikings", "The Witcher","Sherlock","Sex Education",
+           "Glee","Mean Girls","Craze Ex-Girlfriend","Wynonna Earp","Killing Eve", "Arcane","Pirates of the Carribean",
+           "Broad City","The Dark Knight","The Expanse","The Good Wife","White Collar","Law & Order: SVU",
+           "Frozen","Star Wars","Peaky Blinders","The X-Files","ER","This Is Us","Orange is the New Black",
+           "Brooklyn Nine-Nine","Breaking Bad","The Lion King","Beauty and the Beast",
+           "The Breakfast Club","Romeo and Juliet","Lucifer","Calvin and Hobbes","NCIS","Hamilton",
+           "Little Women","Star Trek: The Next Generation","SpongeBob SquarePants")
 )
+
 
 #Helper Functions ----
 #Function to scrape characters based on universe ID
@@ -80,6 +91,29 @@ get_stats<-function(url){
   data
 }
 
+#Helper function to get myers brigs
+get_mb<-function(url){
+  html = url%>%read_html()
+  
+  character = html%>%
+    html_elements("h3")%>%
+    head(1)%>%
+    html_text()
+  
+  data= html%>%
+    html_elements("table")%>%
+    html_table()%>%
+    .[[3]]
+  
+  names(data)=c("myers_briggs","avg_match_score","number_users")
+  data$character = str_replace(character," Descriptive Personality Statistics","")
+  
+  data
+}
+
+get_mb('https://openpsychometrics.org/tests/characters/stats/SUI/3')
+
+
 #test function
 get_stats("https://openpsychometrics.org/tests/characters/stats/DH/6/")
 
@@ -98,6 +132,16 @@ for(url in df_characters$link){
   temp_data_stats<-get_stats(url)
   temp_data_stats$char_id<-df_characters$id[df_characters$link==url]
   df_stats <-rbind(df_stats,temp_data_stats)
+}
+
+
+
+#Create for loop to collect myers-briggs match scores
+df_myers_briggs<-data.frame()
+for(url in df_characters$link){
+  temp_data_mb<-get_mb(url)
+  temp_data_mb$char_id<-df_characters$id[df_characters$link==url]
+  df_myers_briggs <-rbind(df_myers_briggs,temp_data_mb)
 }
 
 
@@ -121,6 +165,15 @@ cleaned_stats<-df_stats%>%
  # select(char_id, char_name, uni_id, uni_name, item, avg_rating, rank, rating_sd, number_ratings) 
 
 
+cleaned_mb<-df_myers_briggs%>%
+  mutate(avg_match_score = as.numeric(str_replace(avg_match_score,"%","")))%>%
+  left_join(df_characters%>%select(id, uni_id), by=c("char_id"="id"))%>%
+  left_join(df_universe, by=c("uni_id"="id"))%>%
+  rename(char_name=character, uni_name=name, avg_match_perc = avg_match_score)%>%
+  select(char_id, char_name, uni_id, uni_name,myers_briggs, avg_match_perc, number_users)
+  
+  
 
 write.csv(cleaned_characters, "characters.csv", row.names = FALSE)
 write.csv(cleaned_stats, "psych_stats.csv", row.names=FALSE)
+write.csv(cleaned_mb, "myers_briggs.csv",row.names=FALSE)
