@@ -2,16 +2,26 @@
 
 ## About
 
-Project collecting and analyzing data from the **[Open-Source Psychometrics Project](https://openpsychometrics.org/)**. The datasets include information about characters from different universes and their respective personality traits. Personality traits are based on user assessments from a questionnaire (e.g. how neat/messy is this character compared to another character). 
-
-I randomly selected **61** different univereses (e.g. Game of Thrones, Bob's Burgers, Westworld, etc) and collected information about their respective characters. Dataset includes information on **625** characters total.
+Project collecting and analyzing data from the **[Open-Source Psychometrics Project](https://openpsychometrics.org/)**. The datasets include information about characters from different universes and their respective personality traits. 
 
 About the Open-Source Psychometrics Project (excerpt from website):
 
 > This website provides a collection of interactive personality tests with detailed results that can be taken for personal entertainment or to learn more about personality assessment. These tests range from very serious and widely used scientific instruments popular psychology to self produced quizzes. A special focus is given to the strengths, weaknesses and validity of the various systems.
 
+## Data
 
-## Data Dictionary
+
+I randomly selected **61** different univereses (e.g. Game of Thrones, Bob's Burgers, Westworld, etc) and collected information about their respective characters. Dataset includes information on **625** characters total.
+
+Information about [Scoring](https://openpsychometrics.org/tests/characters/development/) from their site:
+
+>The idea of this test is to match takers to a fictional character based on similarity of personality.
+
+>A fictional character does not have a real personality, but people might perceive it to have one. It is unknown if this perception of personality actually has the same structure as human individual differences.
+
+>This test assumes that a character's assumed personality is reflected in the average ratings of individuals. To collect this data a survey was developed. In it, the volunteer respondent rates 30 characters on 1 trait each, randomly drawn from a bank of 30 traits. With enough data, all the individual surveys can be combined into a comprehensive database of assumed personality.
+
+## Dictionary
 
 ### Characters
 | **variable** | **type** | **description**                     |
