@@ -10,7 +10,7 @@ About the Open-Source Psychometrics Project (excerpt from website):
 
 ## Data
 
-I randomly selected **61** different univereses (e.g. Game of Thrones, Bob's Burgers, Westworld, etc) and collected information about their respective characters. Dataset includes information on **625** characters total.
+I randomly selected **61** different univereses (e.g. Game of Thrones, Bob's Burgers, Westworld, etc) and collected information about their respective characters. Dataset includes information on **625** characters total. Information for the entire project can also be downloaded directly from [opensychometrics.org](https://openpsychometrics.org/tests/characters/data/). Note, the full zip files are codified - i.e. characteters and questions are expressed as varchar IDs and require lookups.
 
 There are a total of 400 different personality questions (that's a lot of traits!). One recommendation from the project suggests this data can be used for cool projects like dimension reduction - i.e. which traits are similar and convey the same info? 
 
