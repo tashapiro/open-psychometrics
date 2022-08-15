@@ -2,7 +2,9 @@
 
 ## About
 
-Project collecting and analyzing data from the **[Open-Source Psychometrics Project](https://openpsychometrics.org/)**. The datasets include information about characters from different universes and their respective personality traits. Personality traits are based on user assessments from a questionnaire (e.g. how neat/messy is this character compared to another character). I randomly selected 61 different univereses (e.g. Game of Thrones, Bob's Burgers, Westworld, etc) and collected information about their respective characters.
+Project collecting and analyzing data from the **[Open-Source Psychometrics Project](https://openpsychometrics.org/)**. The datasets include information about characters from different universes and their respective personality traits. Personality traits are based on user assessments from a questionnaire (e.g. how neat/messy is this character compared to another character). 
+
+I randomly selected **61** different univereses (e.g. Game of Thrones, Bob's Burgers, Westworld, etc) and collected information about their respective characters. Dataset includes information on **625** characters total.
 
 About the Open-Source Psychometrics Project (excerpt from website):
 
