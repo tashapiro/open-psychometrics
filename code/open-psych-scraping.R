@@ -6,7 +6,7 @@ df_universe<-data.frame(
   id = c("F","EU","HIMYM","GOT","FUTR","TO","HP","GA","H","PR","BBT","SUC",
           "WSW", "R30","UA","GILG","SsC","GOG","S","SCRUBS","LOTR","BOBB","TL","WD",
           "B","ARCH","O","SHL","TW","WW","SOP","FS","S8","DA","GP","MCU","ASP","NG","CM",
-          "SF","GTH","AD","V", "T7S","SV","BVS","Modern Family","YJ","ST","TP","SC","DH","MM",
+          "SF","GTH","AD","V", "T7S","SV","BVS","MF","YJ","ST","TP","SC","DH","MM",
           "BSG","ALA","TB","SP","RD","C","WV","MASH","D"),
   name = c("Friends","Euphoria","How I Met Your Mother",
            "Game of Thrones","Futurama", "The Office",
@@ -84,18 +84,6 @@ get_stats<-function(url){
 get_stats("https://openpsychometrics.org/tests/characters/stats/DH/6/")
 
 
-#Helper Function to scrape image per character
-
-get_image<-function(url)
-  url%>%
-  read_html()%>%
-  html_elements("img")%>%
-  .[1]%>%
-  html_attr("src")
-)
-
-get_image('https://openpsychometrics.org/tests/characters/stats/TL/10/')
-
 #Create for loop to collect characeters for all shows ----
 df_characters<-data.frame()
 for(id in df_universe$id){
@@ -133,5 +121,6 @@ cleaned_stats<-df_stats%>%
  # select(char_id, char_name, uni_id, uni_name, item, avg_rating, rank, rating_sd, number_ratings) 
 
 
-write.csv(cleaned_characters, "characters.csv")
-write.csv(cleaned_stats, "psych_stats.csv")
+
+write.csv(cleaned_characters, "characters.csv", row.names = FALSE)
+write.csv(cleaned_stats, "psych_stats.csv", row.names=FALSE)
