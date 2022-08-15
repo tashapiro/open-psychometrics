@@ -36,3 +36,11 @@ About the Open-Source Psychometrics Project (excerpt from website):
 | rank           | int      | Rank                                   |
 | rating_sd      | num      | Rating Standard Deviation              |
 | number_ratings | int      | Number of Ratings (Responses)          |
+
+
+## Related Data Visuals
+
+There are tons of ways to explore this daat. Recently,  I used it to compare characters from **[Westworld](https://github.com/tashapiro/tanya-data-viz/tree/main/westworld)**.
+
+![plot](https://github.com/tashapiro/tanya-data-viz/blob/main/westworld/plots/westworld-radar-plot.png)
+
