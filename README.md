@@ -72,7 +72,7 @@ Users who took the personal personality assessment tests were subsequently asked
 
 ## Related Data Visuals
 
-There are tons of ways to explore this daat. Recently,  I used it to compare characters from **[Westworld](https://github.com/tashapiro/tanya-data-viz/tree/main/westworld)**.
+There are tons of ways to explore this data. Recently,  I used it to compare characters from the HBO series, **[Westworld](https://github.com/tashapiro/open-psychometrics/blob/main/code/westworld-radar-plot.R)**.
 
 ![plot](https://github.com/tashapiro/tanya-data-viz/blob/main/westworld/plots/westworld-radar-plot.png)
 
