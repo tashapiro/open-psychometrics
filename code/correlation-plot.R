@@ -31,7 +31,7 @@ data_pivot<-data_filter%>%
 #get correlation values
 res<-data.frame(cor(data_pivot[,2:ncol(data_pivot)]))
 
-#pivot longer to create trait1 and trait2, create positional values for plot
+#pivot longer to create trait1 and trait2
 df_corr<-res|>
   rownames_to_column("trait1")|>
   pivot_longer(-trait1, names_to="trait2", values_to="corr")|>
@@ -51,7 +51,7 @@ labels<-data.frame(
 )
 
 df_corr<-df_corr|>
-  #get first appearence of pairing (creates a mask to create triangular corr plot)
+  #get first appearance of pairing (creates a mask to create triangular corr plot)
   filter(app==1)|>
   #create numeric positional arguments for traits - needed for axis labels & scales 
   mutate(xpos = labels$pos[labels$label==trait1],
